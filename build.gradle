@@ -1,0 +1,27 @@
+apply plugin : 'java'
+apply plugin : 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework:spring-orm:3.2.2.RELEASE'
+    compile('org.springframework:spring-context:3.2.2.RELEASE') {
+        exclude group: 'commons-logging'
+    }
+    compile 'org.hibernate:hibernate-entitymanager:4.1.10.Final'
+    
+    testCompile 'junit:junit:4.+'
+    testCompile 'org.mockito:mockito-all:1.9.0'
+    
+    runtime 'org.hsqldb:hsqldb:2.2.9'
+    runtime 'org.slf4j:jcl-over-slf4j:1.5.8'
+    runtime 'org.slf4j:slf4j-api:1.5.8'
+    runtime 'org.slf4j:slf4j-log4j12:1.5.8'
+    runtime 'log4j:log4j:1.2.14'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.4'
+}
