@@ -1,4 +1,4 @@
-@set GRADLE_USER_HOME=d:\temp\GRADLE
+@set GRADLE_USER_HOME=
 @if "%GRADLE_USER_HOME%" == "" @echo Tu dois definir la variable d'environnement GRADLE_USER_HOME dans le fichier gradlew.bat (qui doit contenir le chemin absolu d'un repertoire sur ton disque dur externe).&goto omega
 
 @if "%DEBUG%" == "" @echo off
