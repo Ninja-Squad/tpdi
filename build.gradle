@@ -6,22 +6,20 @@ repositories {
 }
 
 dependencies {
-    compile 'org.springframework:spring-orm:3.2.2.RELEASE'
-    compile('org.springframework:spring-context:3.2.2.RELEASE') {
-        exclude group: 'commons-logging'
-    }
-    compile 'org.hibernate:hibernate-entitymanager:4.1.10.Final'
+    compile 'org.springframework:spring-orm:4.0.2.RELEASE'
+    compile 'org.springframework:spring-context:4.0.2.RELEASE'
+    compile 'org.hibernate:hibernate-entitymanager:4.3.0.Final'
     
     testCompile 'junit:junit:4.+'
-    testCompile 'org.mockito:mockito-all:1.9.0'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+    testCompile 'com.ninja-squad:DbSetup:1.2.0'
     
     runtime 'org.hsqldb:hsqldb:2.2.9'
-    runtime 'org.slf4j:jcl-over-slf4j:1.5.8'
-    runtime 'org.slf4j:slf4j-api:1.5.8'
-    runtime 'org.slf4j:slf4j-log4j12:1.5.8'
+    runtime 'org.slf4j:slf4j-api:1.7.5'
+    runtime 'org.slf4j:jcl-over-slf4j:1.7.5' // because Spring uses commons-logging
     runtime 'log4j:log4j:1.2.14'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.4'
+    gradleVersion = '1.11'
 }

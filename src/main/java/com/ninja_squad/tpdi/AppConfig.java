@@ -1,17 +1,17 @@
 package com.ninja_squad.tpdi;
 
-import javax.sql.DataSource;
-
-import org.hibernate.ejb.HibernatePersistence;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.sql.DataSource;
+
 /**
- * Srping application configuration. Lacks some annotations.
+ * Spring application configuration. Lacks some annotations.
  * @author JB Nizet
  */
 @EnableTransactionManagement
@@ -21,7 +21,7 @@ public class AppConfig {
         LocalContainerEntityManagerFactoryBean result = new LocalContainerEntityManagerFactoryBean();
         result.setPersistenceUnitName("TP_JPA");
         result.setDataSource(dataSource());
-        result.setPersistenceProviderClass(HibernatePersistence.class);
+        result.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         return result;
     }
 
@@ -32,6 +32,8 @@ public class AppConfig {
 
     @Bean
     public PlatformTransactionManager txManager() {
-        return new DataSourceTransactionManager(dataSource());
+        JpaTransactionManager txManager = new JpaTransactionManager();
+        txManager.setEntityManagerFactory(emf().getObject());
+        return txManager;
     }
 }
